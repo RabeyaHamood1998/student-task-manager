@@ -10,6 +10,10 @@ function addTask() {
     const li = document.createElement("li");
     li.textContent = taskText;
 
+    li.onclick = function () {
+        li.classList.toggle("completed");
+    };
+
     document.getElementById("taskList").appendChild(li);
 
     input.value = "";
