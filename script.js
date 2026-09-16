@@ -14,6 +14,16 @@ function addTask() {
         li.classList.toggle("completed");
     };
 
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+
+    deleteButton.onclick = function (event) {
+        event.stopPropagation();
+        li.remove();
+    };
+
+    li.appendChild(deleteButton);
+
     document.getElementById("taskList").appendChild(li);
 
     input.value = "";
