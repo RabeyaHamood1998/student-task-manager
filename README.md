@@ -2,7 +2,7 @@
 
 ## Description
 
-Student Task Manager is a simple web application that helps users manage daily tasks.
+Student Task Manager is a simple web application that helps users organize and manage their daily tasks.
 
 ## Features
 
@@ -18,15 +18,18 @@ Student Task Manager is a simple web application that helps users manage daily t
 
 ## AI Tool Used
 
-ChatGPT was used to help with project planning, code generation, debugging, and documentation.
+ChatGPT was used to assist with project planning, code generation, debugging, and documentation.
 
 ## Open-Source Reference Project
 
-Project Name: Todo List
+Project Name: To-do List
 
-GitHub URL: [ADD REFERENCE GITHUB URL HERE]
+GitHub URL:
+https://github.com/Juel07/to-do-list
 
-The reference project was used only to understand the common features and scope of a task management application. The implementation in this repository was developed separately with the help of AI tools.
+The reference project is a simple task management application developed using HTML, CSS, and JavaScript. It provides comparable functionality, including adding, completing, and deleting tasks.
+
+The reference project was used to understand the expected functionality and scope of a simple task management application. My project was implemented separately with the assistance of ChatGPT rather than by copying the reference project's code.
 
 ## Live Demo
 
