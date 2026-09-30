@@ -34,3 +34,20 @@ function addTask() {
     input.value = "";
     priority.value = "Medium";
 }
+
+
+function filterTasks(filter) {
+    const tasks = document.querySelectorAll("#taskList li");
+
+    tasks.forEach(function (task) {
+        const isCompleted = task.classList.contains("completed");
+
+        if (filter === "all") {
+            task.style.display = "block";
+        } else if (filter === "active") {
+            task.style.display = isCompleted ? "none" : "block";
+        } else if (filter === "completed") {
+            task.style.display = isCompleted ? "block" : "none";
+        }
+    });
+}
