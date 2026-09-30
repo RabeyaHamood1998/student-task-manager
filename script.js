@@ -1,6 +1,60 @@
+function getTasks() {
+    return JSON.parse(localStorage.getItem("tasks")) || [];
+}
+
+
+function saveTasks(tasks) {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+
+function renderTasks() {
+    const taskList = document.getElementById("taskList");
+    taskList.innerHTML = "";
+
+    const tasks = getTasks();
+
+    tasks.forEach(function (task, index) {
+        const li = document.createElement("li");
+
+        if (task.completed) {
+            li.classList.add("completed");
+        }
+
+        const taskContent = document.createElement("span");
+        taskContent.textContent =
+            task.text + " - " + task.priority + " Priority";
+
+        li.appendChild(taskContent);
+
+        li.onclick = function () {
+            tasks[index].completed = !tasks[index].completed;
+            saveTasks(tasks);
+            renderTasks();
+        };
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+
+        deleteButton.onclick = function (event) {
+            event.stopPropagation();
+
+            tasks.splice(index, 1);
+            saveTasks(tasks);
+            renderTasks();
+        };
+
+        li.appendChild(deleteButton);
+
+        taskList.appendChild(li);
+    });
+}
+
+
 function addTask() {
     const input = document.getElementById("taskInput");
     const priority = document.getElementById("prioritySelect");
+
     const taskText = input.value.trim();
 
     if (taskText === "") {
@@ -8,31 +62,22 @@ function addTask() {
         return;
     }
 
-    const li = document.createElement("li");
+    const tasks = getTasks();
 
-    const taskContent = document.createElement("span");
-    taskContent.textContent = taskText + " - " + priority.value + " Priority";
-
-    li.appendChild(taskContent);
-
-    li.onclick = function () {
-        li.classList.toggle("completed");
+    const newTask = {
+        text: taskText,
+        priority: priority.value,
+        completed: false
     };
 
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
+    tasks.push(newTask);
 
-    deleteButton.onclick = function (event) {
-        event.stopPropagation();
-        li.remove();
-    };
-
-    li.appendChild(deleteButton);
-
-    document.getElementById("taskList").appendChild(li);
+    saveTasks(tasks);
 
     input.value = "";
     priority.value = "Medium";
+
+    renderTasks();
 }
 
 
@@ -51,3 +96,8 @@ function filterTasks(filter) {
         }
     });
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    renderTasks();
+});
