@@ -1,5 +1,6 @@
 function addTask() {
     const input = document.getElementById("taskInput");
+    const priority = document.getElementById("prioritySelect");
     const taskText = input.value.trim();
 
     if (taskText === "") {
@@ -8,7 +9,11 @@ function addTask() {
     }
 
     const li = document.createElement("li");
-    li.textContent = taskText;
+
+    const taskContent = document.createElement("span");
+    taskContent.textContent = taskText + " - " + priority.value + " Priority";
+
+    li.appendChild(taskContent);
 
     li.onclick = function () {
         li.classList.toggle("completed");
@@ -27,4 +32,5 @@ function addTask() {
     document.getElementById("taskList").appendChild(li);
 
     input.value = "";
+    priority.value = "Medium";
 }
