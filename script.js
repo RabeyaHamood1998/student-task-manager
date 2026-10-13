@@ -63,7 +63,7 @@ function addTask() {
 
     const newTask = {
         text: taskText,
-        priority: priority.value,
+        priority: "Low",
         completed: false
     };
 
