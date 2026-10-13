@@ -79,3 +79,44 @@ test("saves multiple tasks", () => {
 
     expect(getTasks()).toHaveLength(2);
 });
+
+const { filterTasks } = require("./script.js");
+
+describe("Task Filtering Tests", () => {
+
+    beforeEach(() => {
+        document.getElementById("taskList").innerHTML = `
+            <li class="completed">Completed Task</li>
+            <li>Active Task</li>
+        `;
+    });
+
+    test("All filter shows every task", () => {
+        filterTasks("all");
+
+        const tasks = document.querySelectorAll("#taskList li");
+
+        expect(tasks[0].style.display).toBe("block");
+        expect(tasks[1].style.display).toBe("block");
+    });
+
+    test("Active filter shows only incomplete tasks", () => {
+        filterTasks("active");
+
+        const tasks = document.querySelectorAll("#taskList li");
+
+        expect(tasks[0].style.display).toBe("none");
+        expect(tasks[1].style.display).toBe("block");
+    });
+
+    test("Completed filter shows only completed tasks", () => {
+        filterTasks("completed");
+
+        const tasks = document.querySelectorAll("#taskList li");
+
+        expect(tasks[0].style.display).toBe("block");
+        expect(tasks[1].style.display).toBe("none");
+    });
+
+});
+
