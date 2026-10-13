@@ -1,12 +1,11 @@
+
 function getTasks() {
     return JSON.parse(localStorage.getItem("tasks")) || [];
 }
 
-
 function saveTasks(tasks) {
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
-
 
 function renderTasks() {
     const taskList = document.getElementById("taskList");
@@ -45,11 +44,9 @@ function renderTasks() {
         };
 
         li.appendChild(deleteButton);
-
         taskList.appendChild(li);
     });
 }
-
 
 function addTask() {
     const input = document.getElementById("taskInput");
@@ -71,7 +68,6 @@ function addTask() {
     };
 
     tasks.push(newTask);
-
     saveTasks(tasks);
 
     input.value = "";
@@ -79,7 +75,6 @@ function addTask() {
 
     renderTasks();
 }
-
 
 function filterTasks(filter) {
     const tasks = document.querySelectorAll("#taskList li");
@@ -97,7 +92,17 @@ function filterTasks(filter) {
     });
 }
 
-
 document.addEventListener("DOMContentLoaded", function () {
     renderTasks();
 });
+
+// Export functions for automated testing with Jest
+if (typeof module !== "undefined" && module.exports) {
+    module.exports = {
+        addTask,
+        getTasks,
+        saveTasks,
+        renderTasks,
+        filterTasks
+    };
+}
